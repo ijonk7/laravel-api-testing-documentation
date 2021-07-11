@@ -1,0 +1,697 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Customers App",
+        "description": "API for Customer",
+        "termsOfService": "https://laravel-testing-breeze-api.test/terms-of-service",
+        "contact": {
+            "email": "dev.mrizal@gmail.com"
+        },
+        "license": {
+            "name": "GNU General Public License",
+            "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "{schema}://laravel-testing-breeze-api.test",
+            "description": "OpenApi parameters",
+            "variables": {
+                "schema": {
+                    "enum": [
+                        "https",
+                        "http"
+                    ],
+                    "default": "https"
+                }
+            }
+        }
+    ],
+    "paths": {
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "authenticated"
+                ],
+                "summary": "Login",
+                "description": "Login Admin",
+                "operationId": "login",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Please enter your email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Please enter your password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Login success"
+                    },
+                    "400": {
+                        "description": "Login failed"
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "authenticated"
+                ],
+                "summary": "Logout",
+                "description": "Logout Admin",
+                "operationId": "logout",
+                "responses": {
+                    "200": {
+                        "description": "Logout success"
+                    },
+                    "400": {
+                        "description": "Logout failed"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "authenticated"
+                ],
+                "summary": "Register",
+                "description": "Register Admin",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Please enter your full name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Please enter your email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Please enter your password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password_confirmation",
+                        "in": "query",
+                        "description": "Please enter your password confirmation",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Registration success"
+                    },
+                    "400": {
+                        "description": "Registration failed"
+                    }
+                }
+            }
+        },
+        "/api/customer": {
+            "get": {
+                "tags": [
+                    "customer"
+                ],
+                "summary": "Get list of customer",
+                "description": "Returns list of customer",
+                "operationId": "36d5a836e102529237aae81bf088183a",
+                "responses": {
+                    "200": {
+                        "description": "Successfully get customer list"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/customer/{idCustomer}": {
+            "get": {
+                "tags": [
+                    "customer"
+                ],
+                "summary": "Find customer by ID",
+                "description": "Returns customer by ID",
+                "operationId": "c426891e083234d9d427e469128dd7a6",
+                "parameters": [
+                    {
+                        "name": "idCustomer",
+                        "in": "path",
+                        "description": "Please enter id customer",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully get customer"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/create-customer": {
+            "post": {
+                "tags": [
+                    "customer"
+                ],
+                "summary": "Create customer",
+                "description": "Create new customer",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Please enter your full name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Please enter your email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Please enter your password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "hobby[]",
+                        "in": "query",
+                        "description": "Please enter your hobby",
+                        "required": true,
+                        "explode": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "art",
+                                    "basketball",
+                                    "chess",
+                                    "fashion",
+                                    "video gaming",
+                                    "photography",
+                                    "music",
+                                    "dance",
+                                    "jogging",
+                                    "swimming"
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "name": "date_of_birth",
+                        "in": "query",
+                        "description": "Please enter your date of birth",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    },
+                    {
+                        "name": "age",
+                        "in": "query",
+                        "description": "Please enter your age",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "status[]",
+                        "in": "query",
+                        "description": "Please enter your status",
+                        "required": true,
+                        "explode": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "single",
+                                    "married",
+                                    "divorce"
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "name": "vehicle",
+                        "in": "query",
+                        "description": "Please enter your vehicle",
+                        "required": true,
+                        "explode": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "motorcycle",
+                                    "car",
+                                    "bike"
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "name": "address",
+                        "in": "query",
+                        "description": "Please enter your address",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Please enter your photo",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "photo": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Customer created successfully"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/edit-customer": {
+            "put": {
+                "tags": [
+                    "customer"
+                ],
+                "summary": "Edit customer",
+                "description": "Edit customer",
+                "operationId": "update",
+                "parameters": [
+                    {
+                        "name": "idCustomer",
+                        "in": "query",
+                        "description": "Please enter id customer",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Please enter your full name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Please enter your email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "hobby[]",
+                        "in": "query",
+                        "description": "Please enter your hobby",
+                        "required": true,
+                        "explode": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "art",
+                                    "basketball",
+                                    "chess",
+                                    "fashion",
+                                    "video gaming",
+                                    "photography",
+                                    "music",
+                                    "dance",
+                                    "jogging",
+                                    "swimming"
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "name": "date_of_birth",
+                        "in": "query",
+                        "description": "Please enter your date of birth",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    },
+                    {
+                        "name": "age",
+                        "in": "query",
+                        "description": "Please enter your age",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "status[]",
+                        "in": "query",
+                        "description": "Please enter your status",
+                        "required": true,
+                        "explode": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "single",
+                                    "married",
+                                    "divorce"
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "name": "vehicle",
+                        "in": "query",
+                        "description": "Please enter your vehicle",
+                        "required": true,
+                        "explode": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "motorcycle",
+                                    "car",
+                                    "bike"
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "name": "address",
+                        "in": "query",
+                        "description": "Please enter your address",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Please enter your photo",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "photo": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Customer successfully updated"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/delete-customer/{idCustomer}": {
+            "delete": {
+                "tags": [
+                    "customer"
+                ],
+                "summary": "Delete customer",
+                "description": "Delete customer by ID",
+                "operationId": "12c9bf73d1c7901ab6e4b16ebf1ea981",
+                "parameters": [
+                    {
+                        "name": "idCustomer",
+                        "in": "path",
+                        "description": "Please enter id customer",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Customer successfully removed"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Customer": {
+                "title": "Model Customer",
+                "description": "List property model Customer",
+                "properties": {
+                    "name": {
+                        "title": "Name",
+                        "description": "Name",
+                        "type": "string",
+                        "maximum": 255
+                    },
+                    "email": {
+                        "title": "Email",
+                        "description": "Email",
+                        "type": "string",
+                        "format": "email",
+                        "maximum": 255
+                    },
+                    "password": {
+                        "title": "Password",
+                        "description": "Password",
+                        "type": "string"
+                    },
+                    "hobby": {
+                        "title": "Hobby",
+                        "description": "Hobby",
+                        "type": "string",
+                        "enum": [
+                            "art",
+                            "basketball",
+                            "chess",
+                            "fashion",
+                            "video gaming",
+                            "photography",
+                            "music",
+                            "dance",
+                            "jogging",
+                            "swimming"
+                        ]
+                    },
+                    "date_of_birth": {
+                        "title": "Date of Birth",
+                        "description": "Date of Birth",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "photo": {
+                        "title": "Photo",
+                        "description": "Photo",
+                        "type": "string"
+                    },
+                    "age": {
+                        "title": "Age",
+                        "description": "Age",
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "status": {
+                        "title": "Status",
+                        "description": "Status",
+                        "type": "string",
+                        "enum": [
+                            "single",
+                            "married",
+                            "divorce"
+                        ]
+                    },
+                    "vehicle": {
+                        "title": "Vehicle",
+                        "description": "Vehicle",
+                        "type": "string",
+                        "enum": [
+                            "motorcycle",
+                            "car",
+                            "bike"
+                        ]
+                    },
+                    "address": {
+                        "title": "address",
+                        "description": "address",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "title": "Model User",
+                "description": "List property model User",
+                "properties": {
+                    "name": {
+                        "title": "Name",
+                        "description": "Name",
+                        "type": "string",
+                        "maximum": 255
+                    },
+                    "email": {
+                        "title": "Email",
+                        "description": "Email",
+                        "type": "string",
+                        "format": "email",
+                        "maximum": 255
+                    },
+                    "password": {
+                        "title": "Password",
+                        "description": "Password",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "sanctum": {
+                "type": "http",
+                "description": "Laravel Sanctum token authentication",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "authenticated",
+            "description": "All available Authenticated APIs"
+        },
+        {
+            "name": "customer",
+            "description": "All available Customer APIs"
+        }
+    ],
+    "security": [
+        []
+    ]
+}
